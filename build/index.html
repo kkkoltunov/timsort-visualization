@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="./bundle.js"></script>
+  <title>Document</title>
+</head>
+
+<body>
+  <style>
+    @import "styles.css";
+  </style>
+
+  <div class="code-wrapper"></div>
+  <div>
+    <p id="hint" class="code-hint">Timsort — гибридный алгоритм сортировки, сочетающий сортировку вставками и сортировку
+      слиянием. В настоящее время он является стандартным алгоритмом сортировки во многих языках программирования.
+      Основная идея: по специальному алгоритму массив разделяется на подмассивы, затем каждый подмассив сортируется
+      сортировкой вставками и затим эти подмассивы склеиваются с помощью модифицированной сортировки слиянием.</p>
+  </div>
+  <div>
+    <script src="bundle.js"></script>
+  </div>
+  <div>
+    <input id="dataInput" class="inputData">
+    <input class="button button5" type="button" id="startSort" value="Начать сортировку">
+    <input class="button button5" type="button" id="resetSort" value="Заново">
+    <input class="button button5" type="button" id="backStepSort" value="Назад">
+    <input class="button button5" type="button" id="forwardStepSort" value="Вперед">
+    <input class="button button5" type="button" id="endSort" value="В конец">
+    <a href="#openModal"><button class="button button5" id="settings">Настройки</button></a>
+    <div class="container">
+      <div id="openModal" class="modal">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h3 class="modal-title">Настройки</h3>
+              <a href="#close" title="Close" class="close">×</a>
+            </div>
+            <div class="modal-body">
+              <p id="hint">Автоматическое воспроизведение:</p>
+              <input type="checkbox" id="checkAuto" checked="checked">
+              <p id="hint">Скорость воспроизведения:</p>
+              <input type="range" min="5" max="25" value="15" class="slider" id="myRange">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <input class="button button5" type="button" id="bestCaseSort" value="Лучший случай">
+    <input class="button button5" type="button" id="middleCaseSort" value="Средний случай">
+    <input class="button button5" type="button" id="worstCaseSort" value="Худший случай">
+    <input class="button button5" type="button" id="randomCaseSort" value="Случайные данные">
+    <p id="progressSort" class="progres-sort">[..........] 0%, $=число сравнений</p>
+  </div>
+</body>
+
+</html>
