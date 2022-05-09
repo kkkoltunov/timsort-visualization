@@ -594,6 +594,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     var checkedBox = document.getElementById("checkAuto");
     if (checkedBox.checked) {
+      document.getElementById("myRangeSort").classList.add("class-tumbler");
       disableButtonsStartSortWithAuto();
       for (let i = 0; i < array_commands.length; ++i) {
         timeouts.push(setTimeout(() => {
@@ -723,7 +724,19 @@ document.addEventListener("DOMContentLoaded", function () {
       stepSortShow(0);
       disableButton("backStepSort");
 
-      document.getElementById("backStepSort").onclick = function () {
+      var sliderSort = document.getElementById("myRangeSort");
+      sliderSort.setAttribute("max", array_commands.length - 1);
+
+      sliderSort.oninput = function () {
+        var tempValue = this.value;
+        if (tempValue < indexShowSort) {
+          stepSortShowBack();
+        } else if (tempValue > indexShowSort) {
+          stepSortShowForward();
+        }
+      }
+
+      function stepSortShowBack() {
         if (indexShowSort < 0 || indexShowSort - 1 < minindexStep) {
           disableButton("backStepSort");
           setDefaultColorAllColumns();
@@ -736,13 +749,17 @@ document.addEventListener("DOMContentLoaded", function () {
         stepSortShow(indexShowSort, true);
         --indexShowSort;
 
+        sliderSort.setAttribute("value", indexShowSort);
+
         if (indexShowSort < array_commands.length) {
           enableButton("forwardStepSort");
           enableButton("endSort");
         }
       }
 
-      document.getElementById("forwardStepSort").onclick = function () {
+      document.getElementById("backStepSort").onclick = stepSortShowBack;
+
+      function stepSortShowForward() {
         if (indexShowSort + 1 >= array_commands.length) {
           disableButton("forwardStepSort");
           disableButton("backStepSort");
@@ -753,10 +770,14 @@ document.addEventListener("DOMContentLoaded", function () {
         ++indexShowSort;
         stepSortShow(indexShowSort, false);
 
+        sliderSort.setAttribute("value", indexShowSort);
+
         if (indexShowSort - 1 >= 0 && indexShowSort - 1 >= minindexStep) {
           enableButton("backStepSort");
         }
       }
+
+      document.getElementById("forwardStepSort").onclick = stepSortShowForward;
     }
   };
 });

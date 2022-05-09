@@ -2,6 +2,10 @@
   fill: slateblue;
 }
 
+.class-tumbler {
+  pointer-events: none;
+}
+
 .CodeMirror {
   border-radius: 10px;
   float: left;
